@@ -10,3 +10,5 @@ keybind = unconsumed:alt+6=ignore
 keybind = unconsumed:alt+7=ignore
 keybind = unconsumed:alt+8=ignore
 keybind = unconsumed:alt+9=ignore
+
+theme = Kanagawa Wave
