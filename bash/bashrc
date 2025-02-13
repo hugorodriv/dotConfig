@@ -51,3 +51,12 @@ export LANG="en_US.UTF-8"
 
 # Stop PERL's locale error
 export PERL_BADLANG=0
+
+alias tv='session_name="vimtmux_$(date +%s)"; \
+          tmux new-session -s "$session_name" -d \; \
+            send-keys "vim" C-m \; \
+            split-window -h -p 20 \; \
+            select-pane -t 1 \; \
+            new-window \; \
+            select-window -t 1 \; \
+            attach-session -t "$session_name"'
