@@ -58,5 +58,6 @@ alias tv='session_name="vimtmux_$(date +%s)"; \
             split-window -h -p 20 \; \
             select-pane -t 1 \; \
             new-window \; \
+            new-window \; \
             select-window -t 1 \; \
             attach-session -t "$session_name"'
