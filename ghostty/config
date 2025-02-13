@@ -1,12 +1,12 @@
 # Allow alt 0/9 to be passed to terminal (for tmux window switching)
 
-keybind = unconsumed:alt+0=reload_config
-keybind = unconsumed:alt+1=reload_config
-keybind = unconsumed:alt+2=reload_config
-keybind = unconsumed:alt+3=reload_config
-keybind = unconsumed:alt+4=reload_config
-keybind = unconsumed:alt+5=reload_config
-keybind = unconsumed:alt+6=reload_config
-keybind = unconsumed:alt+7=reload_config
-keybind = unconsumed:alt+8=reload_config
-keybind = unconsumed:alt+9=reload_config
+keybind = unconsumed:alt+0=ignore
+keybind = unconsumed:alt+1=ignore
+keybind = unconsumed:alt+2=ignore
+keybind = unconsumed:alt+3=ignore
+keybind = unconsumed:alt+4=ignore
+keybind = unconsumed:alt+5=ignore
+keybind = unconsumed:alt+6=ignore
+keybind = unconsumed:alt+7=ignore
+keybind = unconsumed:alt+8=ignore
+keybind = unconsumed:alt+9=ignore
