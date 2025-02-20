@@ -64,3 +64,6 @@ alias tv='session_name="vimtmux_$(date +%s)"; \
 
 # bash-completion
 source /usr/share/bash-completion/bash_completion
+
+# "command not found" suggest install
+source /usr/share/doc/pkgfile/command-not-found.bash
