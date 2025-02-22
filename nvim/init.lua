@@ -1,5 +1,4 @@
 -- bootstrap lazy.nvim, lazyvim and your plugins
-
 require("config.lazy")
 require("config.lualine")
 require("lint").linters_by_ft = {
