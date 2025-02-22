@@ -1,3 +1,4 @@
+# ~/.bashrc
 #                       IMPROTANT:!!!
 #
 #       default .bashrc lives in ~/.bashrc, however this file is in .config/bash/bashrc (for git sync)
@@ -8,7 +9,6 @@
 #       not done automatically as this would be unnecesary
 #
 #
-# ~/.bashrc
 #
 
 # If not running interactively, don't do anything
@@ -51,6 +51,8 @@ export LANG="en_US.UTF-8"
 
 # Stop PERL's locale error
 export PERL_BADLANG=0
+
+alias v="nvim"
 
 alias tv='session_name="vimtmux_$(date +%s)"; \
           tmux new-session -s "$session_name" -d \; \
