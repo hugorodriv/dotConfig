@@ -39,3 +39,5 @@ alias tv='session_name="vimtmux_$(date +%s)"; \
             new-window \; \
             select-window -t 1 \; \
             attach-session -t "$session_name"'
+
+export HOMEBREW_NO_ANALYTICS=1
