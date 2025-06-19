@@ -1,6 +1,9 @@
 # Switch left option key to alt to be able to switch Tmux panels
 macos-option-as-alt = left
 
+# Quit ghostty after last window is closed
+quit-after-last-window-closed = true
+
 # Allow alt 0/9 to be passed to terminal (for tmux window switching)
 keybind = unconsumed:alt+0=ignore
 keybind = unconsumed:alt+1=ignore
