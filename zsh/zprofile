@@ -1,4 +1,3 @@
-# ~/.bashrc
 #                       IMPROTANT:!!!
 #
 #
@@ -22,30 +21,15 @@ alias grep='grep --color=auto'
 #     }
 # fi
 
-# # Firefox wayland
-# export OPENCV_LOG_LEVEL=OFF
-#
-# #cmake
-# export CTEST_BUILD_FLAGS="-j 7"
-#
-# #Append /Scripts to $PATH
-# export PATH="$PATH:/home/hugo/Scripts"
-#
-# export CHROME_EXECUTABLE="/usr/bin/brave"
-#
+
 #vim
 alias vim='nvim'
 alias v='nvim'
 alias python='python3'
 
 # Set up fzf key bindings and fuzzy completion
-# eval "$(fzf --bash)"
-
-# Language
-# export LANG="en_US.UTF-8"
-#
-# # Stop PERL's locale error
-# export PERL_BADLANG=0
+# https://github.com/junegunn/fzf?tab=readme-ov-file
+source <(fzf --zsh)
 
 alias tv='session_name="vimtmux_$(date +%s)"; \
           tmux new-session -s "$session_name" -d \; \
@@ -56,9 +40,3 @@ alias tv='session_name="vimtmux_$(date +%s)"; \
             new-window \; \
             select-window -t 1 \; \
             attach-session -t "$session_name"'
-
-# bash-completion
-
-# source /usr/share/bash-completion/bash_completion
-# "command not found" suggest install
-# source /usr/share/doc/pkgfile/command-not-found.bash
