@@ -19,4 +19,4 @@ keybind = unconsumed:alt+9=ignore
 # Disable command-D split on macos
 keybind = command+d=ignore
 
-theme = Kanagawa Wave
+theme = kanagawabones
