@@ -1,58 +1,51 @@
 # ~/.bashrc
 #                       IMPROTANT:!!!
 #
-#       default .bashrc lives in ~/.bashrc, however this file is in .config/bash/bashrc (for git sync)
-#       fix is to create a symlink
-#             ln -s /home/%USER%/.config/bash/bashrc .bashrc
-#                   -> replace %USER% with actual username
 #
-#       not done automatically as this would be unnecesary
+# Adapted config from bash. sections are commented out.
+# File is imported from .zshprofile with a "source" command
 #
 #
-#
-
-# If not running interactively, don't do anything
-[[ $- != *i* ]] && return
 
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
-PS1='[\u@\h \W]\$ '
+# PS1='[\u@\h \W]\$ '
 
 #"thefuck"
 #-original-
 #eval "$(thefuck --alias)"
 
 #optimized (speeds up bash init)
-if command -v thefuck >/dev/null 2>&1; then
-    fuck() {
-        eval "$(thefuck --alias)" && fuck
-    }
-fi
+# if command -v thefuck >/dev/null 2>&1; then
+#     fuck() {
+#         eval "$(thefuck --alias)" && fuck
+#     }
+# fi
 
-# Firefox wayland
-export OPENCV_LOG_LEVEL=OFF
-
-#cmake
-export CTEST_BUILD_FLAGS="-j 7"
-
-#Append /Scripts to $PATH
-export PATH="$PATH:/home/hugo/Scripts"
-
-export CHROME_EXECUTABLE="/usr/bin/brave"
-
+# # Firefox wayland
+# export OPENCV_LOG_LEVEL=OFF
+#
+# #cmake
+# export CTEST_BUILD_FLAGS="-j 7"
+#
+# #Append /Scripts to $PATH
+# export PATH="$PATH:/home/hugo/Scripts"
+#
+# export CHROME_EXECUTABLE="/usr/bin/brave"
+#
 #vim
 alias vim='nvim'
+alias v='nvim'
+alias python='python3'
 
 # Set up fzf key bindings and fuzzy completion
-eval "$(fzf --bash)"
+# eval "$(fzf --bash)"
 
 # Language
-export LANG="en_US.UTF-8"
-
-# Stop PERL's locale error
-export PERL_BADLANG=0
-
-alias v="nvim"
+# export LANG="en_US.UTF-8"
+#
+# # Stop PERL's locale error
+# export PERL_BADLANG=0
 
 alias tv='session_name="vimtmux_$(date +%s)"; \
           tmux new-session -s "$session_name" -d \; \
@@ -65,7 +58,7 @@ alias tv='session_name="vimtmux_$(date +%s)"; \
             attach-session -t "$session_name"'
 
 # bash-completion
-source /usr/share/bash-completion/bash_completion
 
+# source /usr/share/bash-completion/bash_completion
 # "command not found" suggest install
-source /usr/share/doc/pkgfile/command-not-found.bash
+# source /usr/share/doc/pkgfile/command-not-found.bash

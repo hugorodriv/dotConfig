@@ -1,4 +1,6 @@
 # Allow alt 0/9 to be passed to terminal (for tmux window switching)
+# option_as_meta = true
+macos-option-as-alt = true
 
 keybind = unconsumed:alt+0=ignore
 keybind = unconsumed:alt+1=ignore
