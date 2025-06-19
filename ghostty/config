@@ -1,7 +1,7 @@
-# Allow alt 0/9 to be passed to terminal (for tmux window switching)
-# option_as_meta = true
-macos-option-as-alt = true
+# Switch left option key to alt to be able to switch Tmux panels
+macos-option-as-alt = left
 
+# Allow alt 0/9 to be passed to terminal (for tmux window switching)
 keybind = unconsumed:alt+0=ignore
 keybind = unconsumed:alt+1=ignore
 keybind = unconsumed:alt+2=ignore
@@ -12,5 +12,8 @@ keybind = unconsumed:alt+6=ignore
 keybind = unconsumed:alt+7=ignore
 keybind = unconsumed:alt+8=ignore
 keybind = unconsumed:alt+9=ignore
+
+# Disable command-D split on macos
+keybind = command+d=ignore
 
 theme = Kanagawa Wave
