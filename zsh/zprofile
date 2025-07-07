@@ -14,17 +14,20 @@ alias grep='grep --color=auto'
 #-original-
 #eval "$(thefuck --alias)"
 
-#optimized (speeds up bash init)
-# if command -v thefuck >/dev/null 2>&1; then
-#     fuck() {
-#         eval "$(thefuck --alias)" && fuck
-#     }
-# fi
+#optimized (speeds up zsh init)
+if command -v thefuck >/dev/null 2>&1; then
+    fuck() {
+        eval "$(thefuck --alias)" && fuck
+    }
+fi
 
 
 #vim
 alias vim='nvim'
 alias v='nvim'
+
+alias f="fuck"
+
 alias python='python3'
 
 # Set up fzf key bindings and fuzzy completion
@@ -37,7 +40,37 @@ alias tv='session_name="vimtmux_$(date +%s)"; \
             select-pane -t 1 \; \
             new-window \; \
             new-window \; \
+            new-window \; \
             select-window -t 1 \; \
             attach-session -t "$session_name"'
 
 export HOMEBREW_NO_ANALYTICS=1
+
+
+                                  # Lazy NVM for faster ZSH startup
+# https://stackoverflow.com/questions/47009776/how-to-run-nvm-in-oh-my-zsh
+lazynvm() {
+  unset -f nvm node npm
+  export NVM_DIR=~/.nvm
+  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+}
+
+nvm() {
+  lazynvm 
+  nvm $@
+}
+
+node() {
+  lazynvm
+  node $@
+}
+
+npm() {
+  lazynvm
+  npm $@
+}
+
+npx() {
+  lazynvm
+  npx $@
+}

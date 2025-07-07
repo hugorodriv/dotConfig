@@ -15,11 +15,17 @@ vim.cmd("colorscheme kanagawa")
 -- not directly sourcing $MYVIMRC because       1) it's probably stupid       2) kinda breaks the colorscheme (probably bc it's stupid)
 vim.api.nvim_create_autocmd("BufAdd", { command = "source ~/.config/nvim/lua/config/lineshifter.lua" })
 
--- 4 space identation
+-- Tabs identation
+vim.o.autoindent = true
+vim.o.expandtab = false
 vim.o.tabstop = 4 -- A TAB character looks like 4 spaces
-vim.o.expandtab = true -- Pressing the TAB key will insert spaces instead of a TAB character
-vim.o.softtabstop = 4 -- Number of spaces inserted instead of a TAB character
 vim.o.shiftwidth = 4 -- Number of spaces inserted when indenting
+
+-- Spaces
+-- vim.o.expandtab = true -- Pressing the TAB key will insert spaces instead of a TAB character
+-- vim.o.softtabstop = 4 -- Number of spaces inserted instead of a TAB character
+-- vim.o.tabstop = 4 -- A TAB character looks like 4 spaces
+-- vim.o.shiftwidth = 4 -- Number of spaces inserted when indenting
 
 -- Ctr U/D page cenetring
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Center cursor after moving down half-page" })
