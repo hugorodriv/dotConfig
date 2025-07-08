@@ -50,7 +50,7 @@ export HOMEBREW_NO_ANALYTICS=1
                                   # Lazy NVM for faster ZSH startup
 # https://stackoverflow.com/questions/47009776/how-to-run-nvm-in-oh-my-zsh
 lazynvm() {
-  unset -f nvm node npm
+  unset -f nvm node npm npx
   export NVM_DIR=~/.nvm
   [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 }
