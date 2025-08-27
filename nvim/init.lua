@@ -27,6 +27,13 @@ vim.o.shiftwidth = 4 -- Number of spaces inserted when indenting
 -- vim.o.tabstop = 4 -- A TAB character looks like 4 spaces
 -- vim.o.shiftwidth = 4 -- Number of spaces inserted when indenting
 
+-- Yank current filename
+vim.keymap.set("n", "<leader>yf", function()
+    local fname = vim.fn.expand("%:t") -- just the file name
+    vim.fn.setreg("+", fname)
+    vim.notify("filename yanked: " .. fname, vim.log.levels.INFO, { title = "Clipboard" })
+end, { desc = "Yank filename" })
+
 -- Ctr U/D page cenetring
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Center cursor after moving down half-page" })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Center cursor after moving down half-page" })
