@@ -5,16 +5,16 @@ macos-option-as-alt = left
 quit-after-last-window-closed = true
 
 # Allow alt 0/9 to be passed to terminal (for tmux window switching)
-keybind = unconsumed:alt+0=ignore
-keybind = unconsumed:alt+1=ignore
-keybind = unconsumed:alt+2=ignore
-keybind = unconsumed:alt+3=ignore
-keybind = unconsumed:alt+4=ignore
-keybind = unconsumed:alt+5=ignore
-keybind = unconsumed:alt+6=ignore
-keybind = unconsumed:alt+7=ignore
-keybind = unconsumed:alt+8=ignore
-keybind = unconsumed:alt+9=ignore
+keybind = alt+0=unbind
+keybind = alt+1=unbind
+keybind = alt+2=unbind
+keybind = alt+3=unbind
+keybind = alt+4=unbind
+keybind = alt+5=unbind
+keybind = alt+6=unbind
+keybind = alt+7=unbind
+keybind = alt+8=unbind
+keybind = alt+9=unbind
 
 # Disable command-D split on macos
 keybind = command+d=ignore
