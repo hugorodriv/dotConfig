@@ -15,6 +15,17 @@ vim.cmd("colorscheme kanagawa")
 -- not directly sourcing $MYVIMRC because       1) it's probably stupid       2) kinda breaks the colorscheme (probably bc it's stupid)
 vim.api.nvim_create_autocmd("BufAdd", { command = "source ~/.config/nvim/lua/config/lineshifter.lua" })
 
+-- Custom macros
+-- Transforms keys into actual terminal keys (needed for example for <ESC>)
+local tc = function(keys)
+    return vim.api.nvim_replace_termcodes(keys, true, true, true)
+end
+-- Visual: @d
+vim.fn.setreg("d", tc([["zyoconsole.log("debug: <C-r>z", <C-r>z);<Esc>==]]))
+
+-- -- Normal: @D
+-- vim.fn.setreg("D", [["zyiw<Esc>oconsole.log("debug: <C-r>z", <C-r>z);<Esc>]])
+
 -- Tabs identation
 vim.o.autoindent = true
 vim.o.expandtab = false
