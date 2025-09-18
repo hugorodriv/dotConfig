@@ -21,6 +21,8 @@ if command -v thefuck >/dev/null 2>&1; then
     }
 fi
 
+alias jest="npx jest"
+
 
 #vim
 alias vim='nvim'
@@ -29,6 +31,8 @@ alias v='nvim'
 alias f="fuck"
 
 alias python='python3'
+
+alias grep='rg'
 
 # Set up fzf key bindings and fuzzy completion
 # https://github.com/junegunn/fzf?tab=readme-ov-file
@@ -45,6 +49,10 @@ alias tv='session_name="vimtmux_$(date +%s)"; \
             attach-session -t "$session_name"'
 
 export HOMEBREW_NO_ANALYTICS=1
+
+
+# Autocomplete git
+autoload -Uz compinit && compinit
 
 
                                   # Lazy NVM for faster ZSH startup
