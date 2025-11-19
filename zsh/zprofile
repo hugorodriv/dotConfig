@@ -5,6 +5,14 @@
 # File is imported from .zshprofile with a "source" command
 #
 #
+parse_git_branch() {
+  git branch 2>/dev/null | sed -n 's/^\* \(.*\)$/󰘬 \1/p'
+}
+setopt PROMPT_SUBST
+PROMPT='%F{white}%2~%f %F{39}$(parse_git_branch)%f $ '
+
+# Ignore first few Ctrl-d (works after the 10th)
+setopt ignore_eof
 
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
