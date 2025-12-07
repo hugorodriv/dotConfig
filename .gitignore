@@ -1,9 +1,13 @@
 # gitignore everything but these files/folders:
 
 
+# add files with            git add -f
+
+
 *
 !/.gitignore
 !/nvim
 !/ghostty
 !/tmux/tmux.conf
 !/bash
+!/zsh

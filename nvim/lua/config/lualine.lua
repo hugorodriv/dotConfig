@@ -26,7 +26,7 @@ require("lualine").setup({
                 cond = require("noice").api.statusline.mode.has,
                 color = { fg = "#ff9e64" },
             },
-            "filename",
+            { "filename", path = 1 },
         },
         lualine_x = { "fileformat", "filetype" },
         lualine_y = { "progress" },
