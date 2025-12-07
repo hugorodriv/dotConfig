@@ -57,8 +57,8 @@ alias v="nvim"
 alias tv='session_name="vimtmux_$(date +%s)"; \
           tmux new-session -s "$session_name" -d \; \
             send-keys "vim" C-m \; \
-            split-window -h -p 20 \; \
             select-pane -t 1 \; \
+            new-window \; \
             new-window \; \
             new-window \; \
             select-window -t 1 \; \
