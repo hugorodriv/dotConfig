@@ -6,6 +6,9 @@ require("lint").linters_by_ft = {
     sh = { "shellcheck" },
 }
 
+-- Dont change root dir
+require("lazyvim.util").get_root = vim.loop.cwd
+
 vim.g.snacks_animate = false --Disable animations globally
 
 -- Colorscheme
@@ -20,8 +23,11 @@ vim.api.nvim_create_autocmd("BufAdd", { command = "source ~/.config/nvim/lua/con
 local tc = function(keys)
     return vim.api.nvim_replace_termcodes(keys, true, true, true)
 end
--- Visual: @d
+-- @d (with selected variable) inserts console.log("debug variable", variable)
 vim.fn.setreg("d", tc([["zyoconsole.log("debug: <C-r>z", <C-r>z);<Esc>==]]))
+
+-- @s (with selected variable) inserts console.log("debug variable")
+vim.fn.setreg("s", tc([["zyoconsole.log("debug: <C-r>z"<Esc>==]]))
 
 -- -- Normal: @D
 -- vim.fn.setreg("D", [["zyiw<Esc>oconsole.log("debug: <C-r>z", <C-r>z);<Esc>]])
@@ -44,6 +50,16 @@ vim.keymap.set("n", "<leader>yf", function()
     vim.fn.setreg("+", fname)
     vim.notify("filename yanked: " .. fname, vim.log.levels.INFO, { title = "Clipboard" })
 end, { desc = "Yank filename" })
+-- Yank full path of current file
+vim.keymap.set("n", "<leader>yp", function()
+    local path = vim.fn.expand("%:p") -- full path
+    if path == "" then
+        vim.notify("No file path (empty buffer)", vim.log.levels.WARN, { title = "Clipboard" })
+        return
+    end
+    vim.fn.setreg("+", path)
+    vim.notify("path yanked: " .. path, vim.log.levels.INFO, { title = "Clipboard" })
+end, { desc = "Yank full file path" })
 
 -- Ctr U/D page cenetring
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Center cursor after moving down half-page" })

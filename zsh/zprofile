@@ -2,7 +2,7 @@
 #
 #
 # Adapted config from bash. sections are commented out.
-# File is imported from .zshprofile with a "source" command
+# File is imported from .zprofile with a "source" command
 #
 #
 parse_git_branch() {
