@@ -61,6 +61,56 @@ vim.keymap.set("n", "<leader>yp", function()
     vim.notify("path yanked: " .. path, vim.log.levels.INFO, { title = "Clipboard" })
 end, { desc = "Yank full file path" })
 
+-- Open all git-modified files, each in its own tab
+vim.keymap.set("n", "<leader>og", function()
+    local lines = vim.fn.systemlist({ "git", "status", "--porcelain" })
+    if vim.v.shell_error ~= 0 then
+        vim.notify("Not a git repository (or git error)", vim.log.levels.ERROR, { title = "Git" })
+        return
+    end
+
+    local files_set = {}
+    for _, l in ipairs(lines) do
+        -- format: "XY path" or "R? old -> new"
+        local status = l:sub(1, 2)
+        local rest = vim.trim(l:sub(4))
+        local arrow = rest:find(" -> ", 1, true)
+        local path = arrow and rest:sub(arrow + 4) or rest
+
+        -- Include Added or Modified in either column; skip deletes/untracked
+        if status:match("[MA]") then
+            files_set[path] = true
+        end
+    end
+
+    local files = {}
+    for f, _ in pairs(files_set) do
+        if f ~= "" then
+            table.insert(files, f)
+        end
+    end
+    table.sort(files)
+
+    if #files == 0 then
+        vim.notify("No modified/added files found", vim.log.levels.INFO, { title = "Git" })
+        return
+    end
+
+    local start_tab = vim.fn.tabpagenr()
+    for i, f in ipairs(files) do
+        local ef = vim.fn.fnameescape(f)
+        if i == 1 then
+            vim.cmd("edit " .. ef)
+        else
+            vim.cmd("tabnew " .. ef)
+        end
+    end
+    -- Return to the original tab to avoid moving the user's focus
+    vim.cmd(tostring(start_tab) .. "tabnext")
+
+    vim.notify(("Opened %d git-modified files in tabs"):format(#files), vim.log.levels.INFO, { title = "Git" })
+end, { desc = "Open all git-modified files in tabs" })
+
 -- Ctr U/D page cenetring
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Center cursor after moving down half-page" })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Center cursor after moving down half-page" })
