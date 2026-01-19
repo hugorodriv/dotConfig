@@ -61,7 +61,7 @@ vim.keymap.set("n", "<leader>yp", function()
     vim.notify("path yanked: " .. path, vim.log.levels.INFO, { title = "Clipboard" })
 end, { desc = "Yank full file path" })
 
--- Open all git-modified files, each in its own tab
+-- Open all git-modified/added files as buffers (no tabs), keep focus in current window
 vim.keymap.set("n", "<leader>og", function()
     local lines = vim.fn.systemlist({ "git", "status", "--porcelain" })
     if vim.v.shell_error ~= 0 then
@@ -77,7 +77,7 @@ vim.keymap.set("n", "<leader>og", function()
         local arrow = rest:find(" -> ", 1, true)
         local path = arrow and rest:sub(arrow + 4) or rest
 
-        -- Include Added or Modified in either column; skip deletes/untracked
+        -- Include Added or Modified; skip deletes/untracked
         if status:match("[MA]") then
             files_set[path] = true
         end
@@ -96,20 +96,18 @@ vim.keymap.set("n", "<leader>og", function()
         return
     end
 
-    local start_tab = vim.fn.tabpagenr()
+    -- Open first file in current window, add the rest to buffer list
     for i, f in ipairs(files) do
         local ef = vim.fn.fnameescape(f)
         if i == 1 then
             vim.cmd("edit " .. ef)
         else
-            vim.cmd("tabnew " .. ef)
+            vim.cmd("badd " .. ef) -- adds to :ls without changing the current window
         end
     end
-    -- Return to the original tab to avoid moving the user's focus
-    vim.cmd(tostring(start_tab) .. "tabnext")
 
-    vim.notify(("Opened %d git-modified files in tabs"):format(#files), vim.log.levels.INFO, { title = "Git" })
-end, { desc = "Open all git-modified files in tabs" })
+    vim.notify(("Opened %d files into buffers"):format(#files), vim.log.levels.INFO, { title = "Git" })
+end, { desc = "Open all git-modified files" })
 
 -- Ctr U/D page cenetring
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Center cursor after moving down half-page" })
