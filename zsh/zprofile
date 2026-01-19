@@ -42,6 +42,10 @@ alias python='python3'
 
 alias grep='rg'
 
+alias gs='git status'
+alias gd='git diff'
+alias gl='git log'
+
 # Set up fzf key bindings and fuzzy completion
 # https://github.com/junegunn/fzf?tab=readme-ov-file
 source <(fzf --zsh)
