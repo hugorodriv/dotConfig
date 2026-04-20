@@ -6,7 +6,9 @@
 #
 #
 parse_git_branch() {
-  git branch 2>/dev/null | sed -n 's/^\* \(.*\)$/󰘬 \1/p'
+  local branch
+  branch=$(git symbolic-ref --quiet --short HEAD 2>/dev/null) || branch=$(git rev-parse --short HEAD 2>/dev/null) || return
+  printf '󰘬 %s' "$branch"
 }
 setopt PROMPT_SUBST
 PROMPT='%F{white}%2~%f %F{39}$(parse_git_branch)%f $ '
