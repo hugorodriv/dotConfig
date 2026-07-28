@@ -14,8 +14,8 @@ vim.keymap.set("n", "<leader>og", function()
         local arrow = rest:find(" -> ", 1, true)
         local path = arrow and rest:sub(arrow + 4) or rest
 
-        -- Include Added or Modified; skip deletes/untracked
-        if status:match("[MA]") then
+        -- Include tracked modified/added files and brand new untracked files; skip deletes.
+        if status == "??" or status:match("[MARC]") then
             files_set[path] = true
         end
     end
@@ -33,6 +33,11 @@ vim.keymap.set("n", "<leader>og", function()
         return
     end
 
+    Snacks.bufdelete.all()
+    if vim.bo[0].modified then
+        return
+    end
+
     -- Open first file in current window, add the rest to buffer list
     for i, f in ipairs(files) do
         local ef = vim.fn.fnameescape(f)
@@ -42,6 +47,11 @@ vim.keymap.set("n", "<leader>og", function()
             vim.cmd("badd " .. ef) -- adds to :ls without changing the current window
         end
     end
+
+    -- Remove the placeholder listed buffer that can be left behind after reloading Git files.
+    Snacks.bufdelete(function(buf)
+        return vim.bo[buf].buflisted and vim.bo[buf].buftype == "" and not vim.bo[buf].modified and vim.api.nvim_buf_get_name(buf) == ""
+    end)
 
     vim.notify(("Opened %d files into buffers"):format(#files), vim.log.levels.INFO, { title = "Git" })
 end, { desc = "Open all git-modified files" })

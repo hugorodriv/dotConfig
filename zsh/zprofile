@@ -45,7 +45,11 @@ alias python='python3'
 alias grep='rg'
 
 alias gs='git status'
+
 alias gd='git diff'
+alias gdc='git diff --cached'
+alias gdcc='git diff HEAD@{1}'
+
 alias gl='git log'
 
 # Set up fzf key bindings and fuzzy completion
