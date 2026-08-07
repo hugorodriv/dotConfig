@@ -12,7 +12,6 @@ require("lint").linters_by_ft = {
 require("keymaps.yank_path_filename")
 require("keymaps.js_console")
 require("keymaps.open_git_modified")
-require("keymaps.move-line-ctrl-j-k")
 require("keymaps.center-page-ctrl-d-u")
 
 -- Plugin config

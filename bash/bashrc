@@ -14,6 +14,16 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# Inject git branch into bash prompt
+parse_git_branch() {
+	git branch 2>/dev/null | sed -n 's/^\* \(.*\)$/󰘬 \1/p'
+}
+
+PS1='\[\e[97m\]\w\[\e[0m\] \[\e[38;5;39m\]$(parse_git_branch)\[\e[0m\] $ '
+
+# Ignore first few Ctrl-d (works after the 10th)
+export IGNOREEOF=10
+
 # Firefox wayland
 export OPENCV_LOG_LEVEL=OFF
 
@@ -47,9 +57,9 @@ alias grep='grep --color=auto'
 
 #optimized (speeds up bash init)
 if command -v thefuck >/dev/null 2>&1; then
-    fuck() {
-        eval "$(thefuck --alias)" && fuck
-    }
+	fuck() {
+		eval "$(thefuck --alias)" && fuck
+	}
 fi
 
 alias v="nvim"
@@ -64,6 +74,7 @@ alias tv='session_name="vimtmux_$(date +%s)"; \
           tmux new-session -s "$session_name" -d \; \
             send-keys "vim" C-m \; \
             select-pane -t 1 \; \
+            new-window \; \
             new-window \; \
             new-window \; \
             new-window \; \
