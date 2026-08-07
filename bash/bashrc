@@ -14,21 +14,6 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-alias ls='ls --color=auto'
-alias grep='grep --color=auto'
-PS1='[\u@\h \W]\$ '
-
-#"thefuck"
-#-original-
-#eval "$(thefuck --alias)"
-
-#optimized (speeds up bash init)
-if command -v thefuck >/dev/null 2>&1; then
-    fuck() {
-        eval "$(thefuck --alias)" && fuck
-    }
-fi
-
 # Firefox wayland
 export OPENCV_LOG_LEVEL=OFF
 
@@ -52,7 +37,28 @@ export LANG="en_US.UTF-8"
 # Stop PERL's locale error
 export PERL_BADLANG=0
 
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+#
+#
+#"thefuck"
+#-original-
+#eval "$(thefuck --alias)"
+
+#optimized (speeds up bash init)
+if command -v thefuck >/dev/null 2>&1; then
+    fuck() {
+        eval "$(thefuck --alias)" && fuck
+    }
+fi
+
 alias v="nvim"
+
+alias gs='git status'
+alias gd='git diff'
+alias gdc='git diff --cached'
+alias gdcc='git diff HEAD@{1}'
+alias gl='git log'
 
 alias tv='session_name="vimtmux_$(date +%s)"; \
           tmux new-session -s "$session_name" -d \; \
@@ -69,3 +75,4 @@ source /usr/share/bash-completion/bash_completion
 
 # "command not found" suggest install
 source /usr/share/doc/pkgfile/command-not-found.bash
+export JAVA_HOME=/usr/lib/jvm/java-openjdk
